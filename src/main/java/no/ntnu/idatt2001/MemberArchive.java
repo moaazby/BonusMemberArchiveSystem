@@ -34,7 +34,7 @@ public class MemberArchive {
     public boolean addMember(BonusMember bonusMember) {
         boolean success = false;
         //TODO: Fill in your solution:ok
-        if (!(this.members.containsKey(bonusMember.getMemberNumber())))//! containskey, need to add '!'
+        if (!(this.members.containsKey(bonusMember.getMemberNumber())))
         {
             this.members.put(bonusMember.getMemberNumber(), bonusMember);
             success = true;
@@ -88,6 +88,18 @@ public class MemberArchive {
         this.members.put(member.getMemberNumber(), member);
         member = new BonusMember(6, LocalDate.now(), 85000, "Yanes, Moaaz", "moaazby@stud.ntnu.no");
         this.members.put(member.getMemberNumber(), member);
+
+    }
+
+//    findPoints() - skal ta medlemsnummer og passord som argument og returnere antall
+//    poeng denne kunden har spart opp. Returner en negativ verdi hvis medlem med dette
+//    nummeret ikke fins, eller passord er ugyldig
+    public int findPoints(int memberNumber, String password){
+        //TODO: Fill in your solution:ok
+        if(this.members.containsKey(memberNumber) && this.members.get(memberNumber).checkPassword(password)){
+            return this.members.get(memberNumber).getBonusPointsBalance();
+        }
+        return -1;
 
     }
 

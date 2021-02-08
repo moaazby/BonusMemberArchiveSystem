@@ -25,7 +25,7 @@ public class BonusMember {
     }
 
     public boolean checkPassword(String password){
-        return this.password.equalsIgnoreCase(password);
+        return this.password.equals(password);
     }
     public void registerBonusPoints(int newPoints){
         this.checkAndSetMembership();
@@ -72,11 +72,15 @@ public class BonusMember {
         return eMailAddress;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public String toString() {
         this.checkAndSetMembership();
-        return "Bonus Member\n" +
-                "Member Number: " + memberNumber +
+        return "Bonus Member" +
+                "\nMember Number: " + memberNumber +
                 "\nEnrolled Date: " + enrolledDate +
                 "\nBonus Points Balance : " + bonusPointsBalance +
                 "\nName: " + name +
