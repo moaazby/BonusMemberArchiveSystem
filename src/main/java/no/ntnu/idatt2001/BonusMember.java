@@ -29,10 +29,15 @@ public class BonusMember {
     }
     public void registerBonusPoints(int newPoints){
         this.checkAndSetMembership();
-        this.membership.registerPoints(bonusPointsBalance,newPoints);
+        this.bonusPointsBalance = this.membership.registerPoints(bonusPointsBalance,newPoints);
     }
     public String getMembershipLevel(){
-        return membership.getMembershipName();
+        this.checkAndSetMembership();
+        String lvl = "";
+        if(membership instanceof GoldMembership){
+            lvl = (this.bonusPointsBalance < 90000)? " Level 1": " Level 2";
+        }
+        return membership.getMembershipName()+lvl;
     }
     private void checkAndSetMembership(){
         if(bonusPointsBalance<SILVER_LIMIT){
@@ -45,7 +50,6 @@ public class BonusMember {
         }
 
     }
-
 
 
     public int getMemberNumber() {
@@ -70,12 +74,13 @@ public class BonusMember {
 
     @Override
     public String toString() {
+        this.checkAndSetMembership();
         return "Bonus Member\n" +
                 "Member Number: " + memberNumber +
                 "\nEnrolled Date: " + enrolledDate +
                 "\nBonus Points Balance : " + bonusPointsBalance +
                 "\nName: " + name +
                 "\nEmail Address: " + eMailAddress +
-                "\nMembership type: " + membership;
+                "\nMembership type: " + this.getMembershipLevel();
     }
 }

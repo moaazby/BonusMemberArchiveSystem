@@ -35,6 +35,9 @@ public class MemberArchiveClient {
         System.out.println("Member 5 gets 10.000");
         memberArchive.registerPoints(5, 10000);
 
+        System.out.println("Member 6 gets 10.000");
+        memberArchive.registerPoints(6, 10000);
+
         System.out.println("Now lets see the register:\n");
         memberArchive.listAllMembers();
 

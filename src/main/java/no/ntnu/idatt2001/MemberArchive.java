@@ -55,12 +55,11 @@ public class MemberArchive {
     public boolean registerPoints(int memberNumber, int bonusPoints) {
         boolean success = false;
         //TODO: Fill in your solution:ok
-        for(BonusMember member:this.members.values()){
-            if (member.getMemberNumber()==memberNumber){
-                member.registerBonusPoints(bonusPoints);
-                success = true;
-            }
+        if(this.members.containsKey(memberNumber)){
+            this.members.get(memberNumber).registerBonusPoints(bonusPoints);
+            success = true;
         }
+
         return success;
     }
 
@@ -86,6 +85,8 @@ public class MemberArchive {
         member = new BonusMember(4, LocalDate.now(), 30000, "Paulsen, Paul", "paul@paulsen.org");
         this.members.put(member.getMemberNumber(), member);
         member = new BonusMember(5, LocalDate.now(), 75000, "FLo, Finn", "finn.flo@gmail.com");
+        this.members.put(member.getMemberNumber(), member);
+        member = new BonusMember(6, LocalDate.now(), 85000, "Yanes, Moaaz", "moaazby@stud.ntnu.no");
         this.members.put(member.getMemberNumber(), member);
 
     }
