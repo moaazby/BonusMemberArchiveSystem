@@ -33,7 +33,12 @@ public class MemberArchive {
      */
     public boolean addMember(BonusMember bonusMember) {
         boolean success = false;
-        //TODO: Fill in your solution
+        //TODO: Fill in your solution:ok
+        if (!(this.members.containsKey(bonusMember.getMemberNumber())))//! containskey, need to add '!'
+        {
+            this.members.put(bonusMember.getMemberNumber(), bonusMember);
+            success = true;
+        }
         return success;
     }
 
@@ -49,7 +54,13 @@ public class MemberArchive {
      */
     public boolean registerPoints(int memberNumber, int bonusPoints) {
         boolean success = false;
-        //TODO: Fill in your solution
+        //TODO: Fill in your solution:ok
+        for(BonusMember member:this.members.values()){
+            if (member.getMemberNumber()==memberNumber){
+                member.registerBonusPoints(bonusPoints);
+                success = true;
+            }
+        }
         return success;
     }
 
@@ -57,7 +68,7 @@ public class MemberArchive {
      * Lists all members to the console.
      */
     public void listAllMembers() {
-        //TODO: Fill in your solution
+        //TODO: Fill in your solution:ok
         members.values().forEach(s->System.out.println(s.toString()+"---------------------------\n"));
     }
 
