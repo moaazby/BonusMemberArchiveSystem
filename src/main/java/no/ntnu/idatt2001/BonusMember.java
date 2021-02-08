@@ -21,16 +21,30 @@ public class BonusMember {
         this.bonusPointsBalance = bonusPointsBalance;
         this.name = name;
         this.eMailAddress = eMailAddress;
+        this.checkAndSetMembership();
     }
 
     public boolean checkPassword(String password){
         return this.password.equalsIgnoreCase(password);
     }
-    public void registerBonusPoints(int newPoints){}
-    public String getMembershipLevel(){
-        return null;
+    public void registerBonusPoints(int newPoints){
+        this.checkAndSetMembership();
+        this.membership.registerPoints(bonusPointsBalance,newPoints);
     }
-    private void checkAndSetMembership(){}
+    public String getMembershipLevel(){
+        return membership.getMembershipName();
+    }
+    private void checkAndSetMembership(){
+        if(bonusPointsBalance<SILVER_LIMIT){
+            this.membership = new BasicMembership();
+        }else if(bonusPointsBalance>=SILVER_LIMIT && bonusPointsBalance<GOLD_LIMIT){
+            this.membership = new SilverMembership();
+
+        }else if(bonusPointsBalance>=GOLD_LIMIT){
+            this.membership = new GoldMembership();
+        }
+
+    }
 
 
 
@@ -56,13 +70,12 @@ public class BonusMember {
 
     @Override
     public String toString() {
-        return "BonusMember{" +
-                "memberNumber=" + memberNumber +
-                ", enrolledDate=" + enrolledDate +
-                ", bonusPointsBalance=" + bonusPointsBalance +
-                ", name='" + name + '\'' +
-                ", eMailAddress='" + eMailAddress + '\'' +
-                ", membership=" + membership +
-                '}';
+        return "Bonus Member\n" +
+                "Member Number: " + memberNumber +
+                "\nEnrolled Date: " + enrolledDate +
+                "\nBonus Points Balance : " + bonusPointsBalance +
+                "\nName: " + name +
+                "\nEmail Address: " + eMailAddress +
+                "\nMembership type: " + membership;
     }
 }

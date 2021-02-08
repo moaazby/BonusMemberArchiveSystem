@@ -69,7 +69,7 @@ public class MemberArchive {
      */
     public void listAllMembers() {
         //TODO: Fill in your solution:ok
-        members.values().forEach(s->System.out.println(s.toString()+"---------------------------\n"));
+        members.values().forEach(s->System.out.println(s.toString()+"\n---------------------------------"));
     }
 
 
