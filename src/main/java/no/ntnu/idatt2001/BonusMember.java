@@ -1,12 +1,10 @@
 package no.ntnu.idatt2001;
 
-import org.apache.commons.lang3.math.NumberUtils;
-
 import java.time.LocalDate;
 
 public class BonusMember {
 
-    private int memberNumber;
+    private int  memberNumber;
     private LocalDate enrolledDate;
     private int bonusPointsBalance = 0;
     private String name;
@@ -29,6 +27,7 @@ public class BonusMember {
     public boolean checkPassword(String password){
         return this.password.equals(password);
     }
+
     public void registerBonusPoints(int newPoints){
         if(newPoints<0)
             throw new IllegalArgumentException("New points input must be positive value.");
@@ -37,23 +36,25 @@ public class BonusMember {
 
         this.checkAndSetMembership();
         this.bonusPointsBalance = this.membership.registerPoints(bonusPointsBalance,newPoints);
-
     }
+
     public String getMembershipLevel(){
         this.checkAndSetMembership();
-        String lvl = "";
+        String level = "";
         if(membership instanceof GoldMembership){
-            lvl = (this.bonusPointsBalance < 90000)? " Level 1": " Level 2";
+            level = (this.bonusPointsBalance < 90000)? " Level 1": " Level 2";
         }
-        return membership.getMembershipName()+lvl;
+        return membership.getMembershipName()+level;
     }
+
     private void checkAndSetMembership(){
-        if(bonusPointsBalance<SILVER_LIMIT){
+        if(this.bonusPointsBalance<SILVER_LIMIT){
             this.membership = new BasicMembership();
-        }else if(bonusPointsBalance>=SILVER_LIMIT && bonusPointsBalance<GOLD_LIMIT){
+
+        }else if(this.bonusPointsBalance>=SILVER_LIMIT && this.bonusPointsBalance<GOLD_LIMIT){
             this.membership = new SilverMembership();
 
-        }else if(bonusPointsBalance>=GOLD_LIMIT){
+        }else {
             this.membership = new GoldMembership();
         }
 
