@@ -1,5 +1,7 @@
 package no.ntnu.idatt2001;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.time.LocalDate;
 
 public class BonusMember {
@@ -28,8 +30,14 @@ public class BonusMember {
         return this.password.equals(password);
     }
     public void registerBonusPoints(int newPoints){
+        if(newPoints<0)
+            throw new IllegalArgumentException("New points input must be positive value.");
+        if(newPoints==0)
+            throw new IllegalArgumentException("New points can not be 0, it must be at least 1 point");
+
         this.checkAndSetMembership();
         this.bonusPointsBalance = this.membership.registerPoints(bonusPointsBalance,newPoints);
+
     }
     public String getMembershipLevel(){
         this.checkAndSetMembership();

@@ -24,7 +24,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>no.ntnu.idatt2001.EiendomRegisterKlientprogram</mainClass>
+                            <mainClass>no.ntnu.idatt2001.MemberArchiveClient</mainClass>
                         </manifest>>
                     </archive>
                 </configuration>
@@ -47,6 +47,15 @@
             <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
+        </dependency>
     </dependencies>
+
+
+
 
 </project>
