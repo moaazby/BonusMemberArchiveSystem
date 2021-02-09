@@ -105,19 +105,19 @@ class registerBonusPointsTest {
     }
 
     @Nested
-    class NotSupportedNewPointsInput{
+    class NotSupportedNewPoints{
 
         @Test
         @DisplayName("New points is a negative number ")
-        void NewPointsInputIsNegative(){
+        void NewPointsIsNegative(){
             BonusMember basicMember = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
-            assertThrows(IllegalArgumentException.class,()->basicMember.registerBonusPoints(-1),"adding negative input as new points should throw IllegalArgumentException");
+            assertThrows(IllegalArgumentException.class,()->basicMember.registerBonusPoints(-1),"adding negative number as new points should throw IllegalArgumentException");
 
         }
 
         @Test
         @DisplayName("New points is zero ")
-        void NewPointsInputIsZero(){
+        void NewPointsIsZero(){
             BonusMember basicMember = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
             assertThrows(IllegalArgumentException.class,()->basicMember.registerBonusPoints(0),"adding 0 as new points should throw IllegalArgumentException");
         }

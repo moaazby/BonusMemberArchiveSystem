@@ -34,6 +34,9 @@ public class MemberArchive {
     public boolean addMember(BonusMember bonusMember) {
         boolean success = false;
         //TODO: Fill in your solution:ok
+        if(bonusMember.getMemberNumber() <= 0)
+            throw new IllegalArgumentException("New member number must be positive number, 0 is unacceptable");
+
         if (!(this.members.containsKey(bonusMember.getMemberNumber())))
         {
             this.members.put(bonusMember.getMemberNumber(), bonusMember);
@@ -95,23 +98,6 @@ public class MemberArchive {
         member = new BonusMember(6, LocalDate.now(), 85000, "Yanes, Moaaz", "moaazby@stud.ntnu.no");
         this.members.put(member.getMemberNumber(), member);
 
-        //TODO: Fill in your solution:ok
-        //testing the addMember method, member 1 has nr 6 which is used in the list//
-        BonusMember member1 = new BonusMember(6,LocalDate.now(), 20000, "I am test 1", "test@stud.ntnu.no");
-        BonusMember member2 = new BonusMember(7,LocalDate.now(), 20000, "I am test 2", "test@stud.ntnu.no");
-
-        if (this.addMember(member1)){
-            System.out.println("The new member, "+member1.getName()+" added successfully");
-        }else{
-            System.out.println("Could not add this member, "+member1.getName() +" ,member's number exist in the system");
-        }
-
-        if (this.addMember(member2)){
-            System.out.println("The new member, "+member2.getName() +" added successfully");
-        }else{
-            System.out.println("Could not add this member, "+member2.getName() +" ,member's number exist in the system");
-        }
-
 
     }
 
@@ -127,5 +113,9 @@ public class MemberArchive {
 
     }
 
+    //will be used in testing, addMember method test
+    protected int getNumberOfMembers() {
+        return members.size();
+    }
 
 }
