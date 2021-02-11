@@ -34,9 +34,6 @@ public class MemberArchive {
     public boolean addMember(BonusMember bonusMember) {
         boolean success = false;
         //TODO: Fill in your solution:ok
-        if(bonusMember.getMemberNumber() <= 0)
-            throw new IllegalArgumentException("New member number must be positive number, 0 is unacceptable");
-
         if (!(this.members.containsKey(bonusMember.getMemberNumber())))
         {
             this.members.put(bonusMember.getMemberNumber(), bonusMember);
