@@ -101,9 +101,9 @@ public class MemberArchive {
 
     }
 
-//    findPoints() - skal ta medlemsnummer og passord som argument og returnere antall
-//    poeng denne kunden har spart opp. Returner en negativ verdi hvis medlem med dette
-//    nummeret ikke fins, eller passord er ugyldig
+    /*findPoints() - skal ta medlemsnummer og passord som argument og returnere antall
+    poeng denne kunden har spart opp. Returner en negativ verdi hvis medlem med dette
+    nummeret ikke fins, eller passord er ugyldig*/
     public int findPoints(int memberNumber, String password){
         //TODO: Fill in your solution:ok
         if(this.members.containsKey(memberNumber) && this.members.get(memberNumber).checkPassword(password)){
@@ -113,7 +113,7 @@ public class MemberArchive {
 
     }
 
-    //will be used in testing, addMember method test
+    //will be used in testing, addMember method test, JUnit class
     protected int getNumberOfMembers() {
         return members.size();
     }

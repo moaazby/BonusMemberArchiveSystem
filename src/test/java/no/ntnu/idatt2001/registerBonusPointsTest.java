@@ -11,30 +11,30 @@ import static org.junit.jupiter.api.Assertions.*;
 class registerBonusPointsTest {
 
     @Nested
-    class addNewPointsWithRightAdditionalPoints{
+    class AddNewPointsWithRightAdditionalPoints{
 
         @Test
-        @DisplayName("add new points to Basic member, just the new point (no extra), no change in the membership ")
+        @DisplayName("Add new points to Basic member (no extra) [no change in the membership] ")
         void addNewPointToBasicNoChangeInMembership() {
-            BonusMember basicMember = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
+            BonusMember basicMember = new BonusMember(5, LocalDate.now(), 10000, "FLo, Finn", "finn.flo@gmail.com");
 
             //Add the point(registerBonusPoints) then call the member getBonusPointsBalance.
             //registerBonusPoints is void method,
-            //that's why need to execute it after that bring the balance to check with expected value.
+            //that's why need to execute it and then bring the balance to check with expected value.
             basicMember.registerBonusPoints(5000);
             int actualBalance = basicMember.getBonusPointsBalance();
 
-            assertEquals(25000, actualBalance ,"This method should add new points to the balance, basically");
+            assertEquals(15000, actualBalance ,"This method should add new points to the balance, basically");
         }
 
         @Test
-        @DisplayName("add new points to Silver member (with 20% extra), no change in the membership ")
+        @DisplayName("Add new points to Silver member (20% extra) [no change in the membership] ")
         void addNewPointToSilverNoChangeInMembership() {
             BonusMember silverMember = new BonusMember(5, LocalDate.now(), 30000, "FLo, Finn", "finn.flo@gmail.com");
 
             //Add the point(registerBonusPoints) then call the member getBonusPointsBalance.
             //registerBonusPoints is void method,
-            //that's why need to execute it after that bring the balance to check with expected value.
+            //that's why need to execute it and then bring the balance to check with expected value.
             silverMember.registerBonusPoints(5000);
             int actualBalance = silverMember.getBonusPointsBalance();
 
@@ -42,13 +42,13 @@ class registerBonusPointsTest {
         }
 
         @Test
-        @DisplayName("add new points to Gold member level 1 (with 30% extra), no change in the membership ")
+        @DisplayName("Add new points to Gold member level 1 (30% extra) [no change in the membership] ")
         void addNewPointToGoldLvlOneNoChangeInMembership() {
             BonusMember goldMember = new BonusMember(5, LocalDate.now(), 75000, "FLo, Finn", "finn.flo@gmail.com");
 
             //Add the point(registerBonusPoints) then call the member getBonusPointsBalance.
             //registerBonusPoints is void method,
-            //that's why need to execute it after that bring the balance to check with expected value.
+            //that's why need to execute it and then bring the balance to check with expected value.
             goldMember.registerBonusPoints(5000);
             int actualBalance = goldMember.getBonusPointsBalance();
 
@@ -56,13 +56,13 @@ class registerBonusPointsTest {
         }
 
         @Test
-        @DisplayName("add new points to Gold member level 2 (with 50% extra), no change in the membership ")
+        @DisplayName("Add new points to Gold member level 2 (50% extra) [no change in the membership] ")
         void addNewPointToGoldLvlTwoNoChangeInMembership() {
             BonusMember goldMember = new BonusMember(5, LocalDate.now(), 90000, "FLo, Finn", "finn.flo@gmail.com");
 
             //Add the point(registerBonusPoints) then call the member getBonusPointsBalance.
             //registerBonusPoints is void method,
-            //that's why need to execute it after that bring the balance to check with expected value.
+            //that's why need to execute it and then bring the balance to check with expected value.
             goldMember.registerBonusPoints(5000);
             int actualBalance = goldMember.getBonusPointsBalance();
 
@@ -72,10 +72,10 @@ class registerBonusPointsTest {
     }
 
     @Nested
-    class addNewPointsAndChangeTheMembership{
+    class AddNewPointsAndChangeTheMembership{
 
         @Test
-        @DisplayName("add new points to Basic member, and change the membership to Silver ")
+        @DisplayName("[Basic -> Silver] Add new points to Basic member, and change the membership to Silver ")
         void addNewPointToBasicAndChangeMembershipToSilver() {
             BonusMember basicMember = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
             basicMember.registerBonusPoints(10000);
@@ -84,7 +84,7 @@ class registerBonusPointsTest {
         }
 
         @Test
-        @DisplayName("add new points to Silver member, and change the membership to Gold level 1 ")
+        @DisplayName("[Silver -> Gold level 1] Add new points to Silver member, and change the membership to Gold level 1 ")
         void addNewPointToSilverAndChangeMembershipToGoldLevelOne() {
             BonusMember silverMember = new BonusMember(5, LocalDate.now(), 70000, "FLo, Finn", "finn.flo@gmail.com");
             silverMember.registerBonusPoints(10000);
@@ -93,7 +93,7 @@ class registerBonusPointsTest {
         }
 
         @Test
-        @DisplayName("add new points to Gold level 1 member, and change the membership to Gold level 2 ")
+        @DisplayName("[Gold 1 -> Gold 2] Add new points to Gold level 1 member, and change the membership to Gold level 2 ")
         void addNewPointToSilverAndChangeMembershipToGoldLevelTwo() {
             BonusMember goldMember = new BonusMember(5, LocalDate.now(), 88000, "FLo, Finn", "finn.flo@gmail.com");
             goldMember.registerBonusPoints(10000);
@@ -101,6 +101,50 @@ class registerBonusPointsTest {
             assertEquals("Gold Level 2", goldMember.getMembershipLevel() ,"This method should add new points to the balance, and change the membership to Gold level 2");
         }
 
+
+    }
+
+    @Nested
+
+    class AddNewPointManyTimes{
+
+        @Test
+        @DisplayName("Add new points respectively to the same member and check the balance")
+        void addNewPointsRespectivelyAndCheckBalance(){
+
+            BonusMember member = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
+            member.registerBonusPoints(30000);//now the membership is silver and should add 20% next time.
+
+            member.registerBonusPoints(30000);//now the membership is Gold 1 and should add 30% next time.
+
+            member.registerBonusPoints(30000);//now the membership is Gold 2 and should add 50% next time.
+
+            member.registerBonusPoints(30000);//should add 50%
+
+            int expectedBalance = (int) (20000+30000+(30000*1.2)+(30000*1.3)+(30000*1.5));
+            int actualBalance = member.getBonusPointsBalance();
+
+            assertEquals(expectedBalance,actualBalance,"this method should add new points respectively with the right membership scaling factor ");
+
+        }
+
+        @Test
+        @DisplayName("Add new points respectively to the same member and check the membership level")
+        void addNewPointsRespectivelyAndCheckMembershipLevel(){
+
+            BonusMember member = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
+            member.registerBonusPoints(30000);//now the membership is silver and should add 20% next time.
+
+            member.registerBonusPoints(30000);//now the membership is Gold 1 and should add 30% next time.
+
+            member.registerBonusPoints(30000);//now the membership is Gold 2 and should add 50% next time.
+
+            member.registerBonusPoints(30000);//should add 50%
+
+
+            assertEquals("Gold Level 2",member.getMembershipLevel(),"this method should set the right membership level after adding new points respectively ");
+
+        }
 
     }
 
@@ -122,9 +166,8 @@ class registerBonusPointsTest {
             assertThrows(IllegalArgumentException.class,()->basicMember.registerBonusPoints(0),"adding 0 as new points should throw IllegalArgumentException");
         }
 
+
     }
-
-
 
 
 }

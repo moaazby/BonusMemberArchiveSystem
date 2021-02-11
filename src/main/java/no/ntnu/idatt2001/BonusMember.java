@@ -34,12 +34,13 @@ public class BonusMember {
         if(newPoints==0)
             throw new IllegalArgumentException("New points can not be 0, it must be at least 1 point");
 
-        this.checkAndSetMembership();
         this.bonusPointsBalance = this.membership.registerPoints(bonusPointsBalance,newPoints);
+        this.checkAndSetMembership();// Update the membership after adding new points
+                                     // 1-for next registration of new points,to use the right scaling factor.
+                                     // 2-to call the right level in method getMembershipLevel()
     }
 
     public String getMembershipLevel(){
-        this.checkAndSetMembership();
         String level = "";
         if(membership instanceof GoldMembership){
             level = (this.bonusPointsBalance < 90000)? " Level 1": " Level 2";
@@ -87,7 +88,6 @@ public class BonusMember {
 
     @Override
     public String toString() {
-        this.checkAndSetMembership();
         return "Bonus Member" +
                 "\nMember Number: " + memberNumber +
                 "\nEnrolled Date: " + enrolledDate +
