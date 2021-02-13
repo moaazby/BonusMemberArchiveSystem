@@ -2,6 +2,10 @@ package no.ntnu.idatt2001;
 
 import java.time.LocalDate;
 
+/**
+ * @author Moaaz Yanes
+ * @version 1.0 2020-02-08
+ */
 public class BonusMember {
 
     //some colors to make testing of output easier.
@@ -22,6 +26,14 @@ public class BonusMember {
     private static final int SILVER_LIMIT = 25000;
     private static final int GOLD_LIMIT = 75000;
 
+    /**
+     * constuctor which creat an object of type BonusMember
+     * @param memberNumber Member's number
+     * @param enrolledDate Enrolled date
+     * @param bonusPointsBalance Member's bonus points balance
+     * @param name Member's name
+     * @param eMailAddress Member's Email
+     */
     public BonusMember(int memberNumber, LocalDate enrolledDate, int bonusPointsBalance, String name, String eMailAddress) {
         if(memberNumber <= 0)
             throw new IllegalArgumentException("New member number must be positive number, 0 is unacceptable");
@@ -35,10 +47,24 @@ public class BonusMember {
         this.checkAndSetMembership();
     }
 
+    /**
+     * This method will return true if the password(argument) matches member's password(this.password).
+     * False if does not match
+     * @param password Member's password
+     * @return true or false
+     */
     public boolean checkPassword(String password){
         return this.password.equals(password);
     }
 
+    /**
+     * This method register new bonus points for the member based on membership.
+     * So this method calls the method this.membership.registerPoints which add the points to
+     * member's balance with the right scaling percent
+     * In addition, it calls the method this.checkAndSetMembership() to update the membership after
+     * new point registration
+     * @param newPoints new bonus points
+     */
     public void registerBonusPoints(int newPoints){
         //zero and negative newPoints are not supported.
         if(newPoints<0)
@@ -52,6 +78,10 @@ public class BonusMember {
                                      // 2-to call the right level in method getMembershipLevel()
     }
 
+    /**
+     * This method gets membership name with the right level, based on this.membership
+     * @return String : Basic, Silver, Gold Level 1 and Gold Level 2.
+     */
     public String getMembershipLevel(){
         String level = "";
         if(membership instanceof GoldMembership){
@@ -60,6 +90,12 @@ public class BonusMember {
         return membership.getMembershipName()+level;
     }
 
+    /**
+     * This method sets the right level (type) for the member based on the bonus balance
+     * balance ∈ <0, 25000> [Basic]
+     * balance ∈ [25000, 75000> [Silver]
+     * balance ∈  [75000, +∞> [Gold]
+     */
     private void checkAndSetMembership(){
         if(this.bonusPointsBalance<SILVER_LIMIT){
             this.membership = new BasicMembership();
@@ -98,6 +134,12 @@ public class BonusMember {
         return password;
     }
 
+    /**
+     * toString method
+     * @return all member's details,
+     * it adds special colors for number, balance and membership type
+     * to make testing easier
+     */
     @Override
     public String toString() {
         return "Bonus Member" +

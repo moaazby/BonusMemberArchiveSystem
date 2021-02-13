@@ -98,9 +98,13 @@ public class MemberArchive {
 
     }
 
-    /*findPoints() - skal ta medlemsnummer og passord som argument og returnere antall
-    poeng denne kunden har spart opp. Returner en negativ verdi hvis medlem med dette
-    nummeret ikke fins, eller passord er ugyldig*/
+    /**
+     * this method gets the bonus balance by member's number and member's password as arguments
+     * @param memberNumber Member's number
+     * @param password a password as argument
+     * @return the number of points(member's balance), return -1 if the member with given number
+     * does not exist in the list or the given password is invalid.
+     */
     public int findPoints(int memberNumber, String password){
         //TODO: Fill in your solution:ok
         if(this.members.containsKey(memberNumber) && this.members.get(memberNumber).checkPassword(password)){
