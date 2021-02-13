@@ -57,10 +57,10 @@ class addMemberTest {
         void NewMemberNumberIsNegative(){
             try{
                 MemberArchive memberArchive = new MemberArchive();
-                BonusMember newMember = new BonusMember(-1, LocalDate.now(), 20000, "Yanes, Moaaz", "test@stud.ntnu.no");
+                memberArchive.addMember( new BonusMember(-1, LocalDate.now(), 20000, "Yanes, Moaaz", "test@stud.ntnu.no"));
             }
             catch (IllegalArgumentException e){
-                assertEquals(e.getMessage(),"New member number must be positive number, 0 is unacceptable","using a negative number as new member number should throw IllegalArgumentException");
+                assertEquals("New member number must be positive number, 0 is unacceptable",e.getMessage(),"using a negative number as new member number should throw IllegalArgumentException");
 
             }
 
@@ -71,7 +71,7 @@ class addMemberTest {
         void NewMemberNumberIsZero(){
             try{
                 MemberArchive memberArchive = new MemberArchive();
-                BonusMember newMember = new BonusMember(0, LocalDate.now(), 20000, "Yanes, Moaaz", "test@stud.ntnu.no");
+                memberArchive.addMember( new BonusMember(0, LocalDate.now(), 20000, "Yanes, Moaaz", "test@stud.ntnu.no"));
             }
             catch (IllegalArgumentException e){
                 assertEquals("New member number must be positive number, 0 is unacceptable",e.getMessage(),"using 0 as new member number should throw IllegalArgumentException");
@@ -85,7 +85,7 @@ class addMemberTest {
         void NewMemberNameIsEmpty(){
             try{
                 MemberArchive memberArchive = new MemberArchive();
-                BonusMember newMember = new BonusMember(1, LocalDate.now(), 20000, "", "test@stud.ntnu.no");
+                memberArchive.addMember( new BonusMember(1, LocalDate.now(), 20000, "", "test@stud.ntnu.no"));
             }
             catch (IllegalArgumentException e){
                 assertEquals("The name is required",e.getMessage(),"creat new member with no name should throw IllegalArgumentException");

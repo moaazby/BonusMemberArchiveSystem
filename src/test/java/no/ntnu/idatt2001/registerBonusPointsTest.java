@@ -20,7 +20,7 @@ class registerBonusPointsTest {
 
             //Add the point(registerBonusPoints) then call the member getBonusPointsBalance.
             //registerBonusPoints is void method,
-            //that's why need to execute it and then bring the balance to check with expected value.
+            //that's why we need to execute it and then bring the balance to check with expected value.
             basicMember.registerBonusPoints(5000);
             int actualBalance = basicMember.getBonusPointsBalance();
 
@@ -34,7 +34,7 @@ class registerBonusPointsTest {
 
             //Add the point(registerBonusPoints) then call the member getBonusPointsBalance.
             //registerBonusPoints is void method,
-            //that's why need to execute it and then bring the balance to check with expected value.
+            //that's why we need to execute it and then bring the balance to check with expected value.
             silverMember.registerBonusPoints(5000);
             int actualBalance = silverMember.getBonusPointsBalance();
 
@@ -48,7 +48,7 @@ class registerBonusPointsTest {
 
             //Add the point(registerBonusPoints) then call the member getBonusPointsBalance.
             //registerBonusPoints is void method,
-            //that's why need to execute it and then bring the balance to check with expected value.
+            //that's why we need to execute it and then bring the balance to check with expected value.
             goldMember.registerBonusPoints(5000);
             int actualBalance = goldMember.getBonusPointsBalance();
 
@@ -106,14 +106,14 @@ class registerBonusPointsTest {
 
     @Nested
 
-    class AddNewPointManyTimes{
+    class AddNewPointsManyTimes{
 
         @Test
         @DisplayName("Add new points respectively to the same member and check the balance")
         void addNewPointsRespectivelyAndCheckBalance(){
 
             BonusMember member = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
-            member.registerBonusPoints(30000);//now the membership is silver and should add 20% next time.
+            member.registerBonusPoints(30000);//now the membership is Silver and should add 20% next time.
 
             member.registerBonusPoints(30000);//now the membership is Gold 1 and should add 30% next time.
 
@@ -133,14 +133,11 @@ class registerBonusPointsTest {
         void addNewPointsRespectivelyAndCheckMembershipLevel(){
 
             BonusMember member = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
-            member.registerBonusPoints(30000);//now the membership is silver and should add 20% next time.
+            member.registerBonusPoints(30000);//now the membership is Silver.
 
-            member.registerBonusPoints(30000);//now the membership is Gold 1 and should add 30% next time.
+            member.registerBonusPoints(30000);//now the membership is Gold 1.
 
-            member.registerBonusPoints(30000);//now the membership is Gold 2 and should add 50% next time.
-
-            member.registerBonusPoints(30000);//should add 50%
-
+            member.registerBonusPoints(30000);//now the membership is Gold 2.
 
             assertEquals("Gold Level 2",member.getMembershipLevel(),"this method should set the right membership level after adding new points respectively ");
 
@@ -154,16 +151,16 @@ class registerBonusPointsTest {
         @Test
         @DisplayName("New points is a negative number ")
         void NewPointsIsNegative(){
-            BonusMember basicMember = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
-            assertThrows(IllegalArgumentException.class,()->basicMember.registerBonusPoints(-1),"adding negative number as new points should throw IllegalArgumentException");
+            BonusMember member = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
+            assertThrows(IllegalArgumentException.class,()->member.registerBonusPoints(-1),"adding negative number as new points should throw IllegalArgumentException");
 
         }
 
         @Test
         @DisplayName("New points is zero ")
         void NewPointsIsZero(){
-            BonusMember basicMember = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
-            assertThrows(IllegalArgumentException.class,()->basicMember.registerBonusPoints(0),"adding 0 as new points should throw IllegalArgumentException");
+            BonusMember member = new BonusMember(5, LocalDate.now(), 20000, "FLo, Finn", "finn.flo@gmail.com");
+            assertThrows(IllegalArgumentException.class,()->member.registerBonusPoints(0),"adding 0 as new points should throw IllegalArgumentException");
         }
 
 

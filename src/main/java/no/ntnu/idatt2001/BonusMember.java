@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class BonusMember {
 
-    //some colors to make testing easier.
+    //some colors to make testing of output easier.
     public final String ANSI_RESET = "\u001B[0m";
     public final String ANSI_GREEN = "\u001B[32m";
     public final String ANSI_YELLOW = "\u001B[33m";
@@ -111,6 +111,8 @@ public class BonusMember {
 
     /**
      * if your IDE dose not support ANSI colors, please use this toString and comment the other one above.
+     * IntelliJ supports ANSI colors
+     * Eclipse -> add plugin 'ANSI Escape in Console' from Eclipse marketplace
      * */
 
     /**
